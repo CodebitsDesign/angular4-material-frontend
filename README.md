@@ -1,4 +1,4 @@
-# Angular4MaterialFrontend
+# Angular4 Material Frontend
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0.
 
@@ -76,7 +76,8 @@ In your `tsconfig.json`, add hammerjs to the types section.
 ```
 
 
-Step 2. angular-cli.json
+Step 2. `angular-cli.json` 
+
 If you decide to use `Hammer.js`, and given that you’ve started your project with the `Angular CLI`, modify your `angular-cli.json` file to add the Hammer.js library.
 ```json
 ...
@@ -93,7 +94,8 @@ If you decide to use `Hammer.js`, and given that you’ve started your project w
 
 
 Step 3. Add Angular Material to your app module
-Import MaterialModule and add it to your imports. You’ll also need to import the necessary for animations in your module (e.g: app.module.ts).
+
+Import `MaterialModule` and add it to your imports. You’ll also need to import the necessary for animations in your module (e.g: app.module.ts).
 ```typescript
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -132,10 +134,10 @@ Step 4. Import a pre-built theme and Material icons
 There are a few pre-built themes installed automatically with Angular Material. These set the colors and basic styling. 
 The available themes are: `indigo-pink`, `deeppurple-amber`, `purple-green` and `pink-bluegrey`.
 
-You can also have access to the `Material Design icons` and use named icons with `<md-icon>`. 
+You can also have access to the `Material Design icons` and use named icons with `<md-icon>` or `<i class="material-icons">`. 
 To import both a theme and the Material Design icons to your project, you would add this to your global `styles.css` or `index.html`:
 
-> @import prevents parallel downloads, use `<link>` instead.
+> `@import` prevents parallel downloads, use `<link>` instead.
  
 in `src/idex.html`:
 ```html
@@ -156,6 +158,7 @@ Use `LINK` instead of `@import` if you want stylesheets to download in parallel 
 
 
 Step 5. Angular Material is ready!
+
 [Material Icons Guide](https://google.github.io/material-design-icons/)
 Material icons look best at 24px, to be shown in either 18, 24, 36 or 48px. The default being 24px.
 ```html
@@ -233,6 +236,8 @@ in `src/app/app.component.html`:
 And to this we added only the following CSS to our global `styles.css`.
 in `src/styles.css`:
 ```css
+/*csslint adjoining-classes:false, fallback-colors:false */
+
 /* Rules for sizing the icon. */
 .material-icons.md-18 { font-size: 18px; }
 .material-icons.md-24 { font-size: 24px; }
@@ -272,27 +277,42 @@ md-toolbar-row {
 }
 
 ```
+> For ingore CSSLint Waring, include `/*csslint ... */` comment:
+>> Note that the lack of `white space` is extremely important: it needs to be `/*csslint`, not `/* csslint`, otherwise it won't work.
+ 
 
 Step 6. Running unit tests
+
 > ISSUE: Angular2 material 'md-icon' is not a known element with Karma / Jasmine testing
+
 > WARN: 'Could not find Angular Material core theme. Most Material components may not work as expected.
 
 Change the following to add Angular Material
 in `src/app/app.component.spec.ts`:
 ```typescript
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, async, ComponentFixtureAutoDetect } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import { MaterialModule } from '@angular/material'; //Add Angular Material
+// Add for Angular Material 
+import { MaterialModule } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import 'hammerjs';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ MaterialModule ], //Add Angular Material
       declarations: [
         AppComponent
       ],
+      providers: [
+        { provide: ComponentFixtureAutoDetect, useValue: true }
+      ],
+      imports: [
+        MaterialModule, // Add Angular Material
+        BrowserAnimationsModule   // Add Angular Animations
+      ],
     }).compileComponents();
   }));
+
   ...
 ```
 
@@ -300,22 +320,47 @@ Modifying `karma.conf.js` to include a theme
 ```javascript
 files: [
   { pattern: './src/test.ts', watched: false },
-  // Include a Material theme in the test suite.
   { pattern: './src/index.html', watched: true},
-  { pattern: './node_modules/@angular/material/prebuilt-themes/indigo-pink.css' }
+  { pattern: './src/styles.css', watched: true},
+  // Include a Material theme in the test suite.
+  { pattern: './node_modules/@angular/material/prebuilt-themes/indigo-pink.css', included: true, watched: true},
+  { pattern: './node_modules/hammerjs/hammer.min.js', included: true, watched: true },
 ],
-```
 
-> WARN: 'Could not find HammerJS. Certain Angular Material components may not work correctly.'
-
-in your  `src/polyfills.ts` (recommanded to have a one if you have not):
-```typescript  
-import 'hammerjs/hammer'; // Included with Angular Material
 ```
 
 Then, run `ng serve` or `ng test`.
 ```bash
-$ ng serve
+$ yarn test
 or
-$ ng test
+$ yarn start
 ```
+
+## Publish this local project on GitHub using command line
+Step 1. [Create a new repository](https://help.github.com/articles/creating-a-new-repository/) on GitHub. To avoid errors, do not initialize the new repository with `README`, `license`, or `gitignore` files. 
+```
+Repository name: angular4-material-frontend
+```
+
+Step 2. Open Terminal and change the current working directory to your local project.
+```bash
+// Show the working tree status:
+$ git status
+
+//  If you haven’t initialised a Git repository in the project directory, 
+// use the below command to initialise the local directory as Git repository:
+$ git init 
+
+//  Add file contents to the index: 
+$ git add .
+//  Record changes to the repository: 
+$ git commit -m "first commit"
+
+// Manage set of tracked repositories.
+// [Add the URL for the remote repository](https://help.github.com/articles/adding-a-remote) 
+// created at `Step 1` where your local repository will be pushed:
+$ git remote add origin https://github.com/CodebitsDesign/angular4-material-frontend.git
+// Update remote refs along with associated objects: 
+$ git push -u origin master
+```
+> If you use `-u` in the command, it will remember your preferences for remote and branch and you can simply use the command `git push` next time.
