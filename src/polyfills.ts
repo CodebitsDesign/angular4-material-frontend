@@ -55,7 +55,8 @@ import 'core-js/es7/reflect';
  */
 import 'zone.js/dist/zone';  // Included with Angular CLI.
 
-
+// import 'hammerjs/hammer'; // Included with Angular Material
+// import 'hammerjs'; // Included with Angular Material
 
 /***************************************************************************************************
  * APPLICATION IMPORTS

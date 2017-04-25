@@ -1,12 +1,22 @@
-import { TestBed, async } from '@angular/core/testing';
-
+import { TestBed, async, ComponentFixtureAutoDetect } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+
+import { MaterialModule } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import 'hammerjs';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent
+      ],
+      providers: [
+        { provide: ComponentFixtureAutoDetect, useValue: true }
+      ],
+      imports: [
+        MaterialModule, // Add Angular Material
+        BrowserAnimationsModule   // Add Angular Animations
       ],
     }).compileComponents();
   }));

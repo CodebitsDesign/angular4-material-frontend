@@ -10,13 +10,21 @@ module.exports = function (config) {
       require('karma-chrome-launcher'),
       require('karma-jasmine-html-reporter'),
       require('karma-coverage-istanbul-reporter'),
-      require('@angular/cli/plugins/karma')
+      require('@angular/cli/plugins/karma'),
     ],
     client:{
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
     files: [
-      { pattern: './src/test.ts', watched: false }
+      { pattern: './src/test.ts', watched: false },
+      { pattern: './src/index.html', watched: true},
+      { pattern: './src/styles.css', watched: true},
+      // Include a Material theme in the test suite.
+      { pattern: './node_modules/@angular/material/prebuilt-themes/indigo-pink.css', included: true, watched: true},
+      { pattern: './node_modules/hammerjs/hammer.min.js', included: true, watched: true },
+      // Include all Angular dependencies
+      // {pattern: './node_modules/@angular/**/*', included: false, watched: false},
+      // {pattern: './node_modules/rxjs/**/*.js', included: false, watched: false},
     ],
     preprocessors: {
       './src/test.ts': ['@angular/cli']
