@@ -1,4 +1,7 @@
-# Angular4 Material Frontend
+# Angular 4 Material Frontend
+Angular 4 Material Design frontend project
+created for Git Submodule of Typescript MEAN Fullstack project.
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0.
 
@@ -49,11 +52,10 @@ $ ng serve
 // And open http://localhost:4200 in your browser.
 ```
 
-### Adding Angular Material
-Material Design components for Angular apps
-<https://material.angular.io/guide/getting-started>
-[Getting Started With Angular Material 2](https://alligator.io/angular/angular-material-2/)
-[Setting up your first Angular 2 Project Using Angular Material 2](https://medium.com/@ladyleet/setting-up-your-first-angular-2-project-using-angular-material2-5db18a174165)
+### Adding Angular Material: 
+-   [Material Design components for Angular apps](https://material.angular.io/guide/getting-started)
+-   [Getting Started With Angular Material 2](https://alligator.io/angular/angular-material-2/)
+-   [Setting up your first Angular 2 Project Using Angular Material 2](https://medium.com/@ladyleet/setting-up-your-first-angular-2-project-using-angular-material2-5db18a174165)
 
 Step 1. Install angular-material & hammerjs
 ```bash
@@ -342,24 +344,36 @@ Step 1. [Create a new repository](https://help.github.com/articles/creating-a-ne
 Repository name: angular4-material-frontend
 ```
 
-Step 2. Open Terminal and change the current working directory to your local project.
-```bash
+Step 2. Open Terminal and change the current working directory to your local project. 
+Then process git commands:
+
 // Show the working tree status:
+```bash
 $ git status
+```
 
-//  If you haven’t initialised a Git repository in the project directory, 
-// use the below command to initialise the local directory as Git repository:
+// If you haven’t initialised a Git repository in the project directory, 
+use the below command to initialise the local directory as Git repository:
+```bash
 $ git init 
+```
 
-//  Add file contents to the index: 
+// Add file contents to the index: 
+```bash
 $ git add .
-//  Record changes to the repository: 
+```
+
+// Record changes to the repository: 
+```bash
 $ git commit -m "first commit"
+```
 
 // Manage set of tracked repositories.
-// [Add the URL for the remote repository](https://help.github.com/articles/adding-a-remote) 
-// created at `Step 1` where your local repository will be pushed:
+ [Add the URL for the remote repository](https://help.github.com/articles/adding-a-remote) 
+created at `Step 1` where your local repository will be pushed:
+```bash
 $ git remote add origin https://github.com/CodebitsDesign/angular4-material-frontend.git
+
 // Update remote refs along with associated objects: 
 $ git push -u origin master
 ```
